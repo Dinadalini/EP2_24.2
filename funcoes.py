@@ -25,3 +25,5 @@ def faz_jogada (tabuleiro, linha, coluna):
         tabuleiro[linha][coluna] = 'X'
     else:
         tabuleiro[linha][coluna] = '-'
+
+    return tabuleiro
