@@ -11,11 +11,7 @@ def define_posicoes (linha, coluna, orientacao, tamanho):
     return posicoes_lista
 
 def preenche_frota (frota, nome_navio, linha, coluna, orientacao, tamanho):
-    frota = {
-    "porta-aviões":[],
-    "navio-tanque":[],
-    "contratorpedeiro":[],
-    "submarino": [],}
+    frota = {}
     
     posicoes = define_posicoes(linha, coluna, orientacao, tamanho)
     if nome_navio in frota:
