@@ -10,5 +10,24 @@ def define_posicoes (linha, coluna, orientacao, tamanho):
             posicoes_lista.append(posicoes)
     return posicoes_lista
 
-
-
+def preenche_frota (frota, nome_navio, linha, coluna, orientacao, tamanho):
+    frota = {
+    "porta-aviões":[
+      [[],[],[],[]]
+    ],
+    "navio-tanque":[
+      [[],[],[]],
+      [[],[],[]]
+    ],
+    "contratorpedeiro":[
+      [[],[]],
+      [[],[]],
+      [[],[]]
+    ],
+    "submarino": [
+      [[]],
+      [[]],
+      [[]],
+      [[]]
+    ],
+}
