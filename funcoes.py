@@ -20,4 +20,3 @@ def preenche_frota (frota, nome_navio, linha, coluna, orientacao, tamanho):
     
     return frota
 
-print (preenche_frota({'porta-aviões': [[[1, 2], [2, 2], [3, 2], [4, 2]], [[0, 4], [1, 4], [2, 4], [3, 4]]]}, 'contratorpedeiro', 5, 4, 'vertical', 2))
