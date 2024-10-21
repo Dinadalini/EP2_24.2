@@ -1,4 +1,4 @@
-def define_posicoes (linha, coluna, orientacao, tamanho):
+def define_posicoes (linha, coluna, orientacao, tamanho):    
     posicoes_lista = []
 
     if orientacao == 'horizontal':
@@ -78,10 +78,9 @@ def posicao_valida(frota, linha, coluna, orientacao, tamanho):
         if linha_atual < 0 or linha_atual > 9 or coluna_atual < 0 or coluna_atual > 9:
             return False
         
-    for navios in frota:
-        for navio in frota[navios]:
-            for posicao_ocupada in navio:
-                if posicao_ocupada in navio_atual:
+    for navios, posicoes in frota.items():
+            for posicao_ocupada in posicoes:
+                if posicao_ocupada in posicoes:
                     return False
 
     return True
