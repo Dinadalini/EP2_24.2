@@ -22,7 +22,7 @@ for nome, dados in tamanhos_navios.items():
         coluna_atual = int(input("Qual coluna deseja colocar o navio? ")) 
 
         if nome != "submarino":
-            orientacao = int(input("Qual orientação deseja colocar o navio?"))
+            orientacao = int(input("Qual orientação deseja colocar o navio? "))
             if orientacao == 1:
                 orientacao = "vertical"
             elif orientacao == 2:
@@ -95,12 +95,12 @@ while jogando:
         print(f"A posição linha {linha_tiro_jogador} e coluna {coluna_tiro_jogador} já foi informada anteriormente!")
         while tiro_atual in tiros_jogador:
             linha_tiro_jogador= int(input("Qual linha deseja atirar? "))
-            while linha_tiro_jogador < 0 or linha_tiro_jogador > 9:
+            while linha_tiro_jogador < 0 or linha_tiro_jogador > 10:
                 print("Linha inválida!")
                 linha_tiro_jogador= int(input("Qual linha deseja atirar? "))
             
             coluna_tiro_jogador= int(input("Qual coluna deseja atirar? "))
-            while coluna_tiro_jogador < 0 or coluna_tiro_jogador > 9:
+            while coluna_tiro_jogador < 0 or coluna_tiro_jogador > 10:
                 print("Coluna inválida!")
                 coluna_tiro_jogador= int(input("Qual linha deseja atirar? "))
     tiros_jogador.append(tiro_atual)
