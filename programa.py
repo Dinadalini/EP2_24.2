@@ -38,4 +38,62 @@ for nome, dados in tamanhos_navios.items():
         else:
             print("Esta posição não está válida!")
 
-print(frota)
+frota_oponente = {
+    'porta-aviões': [
+        [[9, 1], [9, 2], [9, 3], [9, 4]]
+    ],
+    'navio-tanque': [
+        [[6, 0], [6, 1], [6, 2]],
+        [[4, 3], [5, 3], [6, 3]]
+    ],
+    'contratorpedeiro': [
+        [[1, 6], [1, 7]],
+        [[0, 5], [1, 5]],
+        [[3, 6], [3, 7]]
+    ],
+    'submarino': [
+        [[2, 7]],
+        [[0, 6]],
+        [[9, 7]],
+        [[7, 6]]
+    ]
+}
+
+tabuleiro_oponente= posiciona_frota(frota_oponente)
+tabuleiro_jogador= posiciona_frota (frota)
+
+jogando= True
+tiros_jogador=[]
+
+while jogando:
+    linha_tiro_jogador= int(input("Qual linha deseja atirar? "))
+    while linha_tiro_jogador < 0 or linha_tiro_jogador > 9:
+        print("Linha inválida!")
+        linha_tiro_jogador= int(input("Qual linha deseja atirar? "))
+    
+    coluna_tiro_jogador= int(input("Qual coluna deseja atirar? "))
+    while coluna_tiro_jogador < 0 or coluna_tiro_jogador > 9:
+        print("Coluna inválida!")
+        coluna_tiro_jogador= int(input("Qual linha deseja atirar? "))
+
+    
+    tiro_atual= [linha_tiro_jogador, coluna_tiro_jogador]
+    if tiro_atual in tiros_jogador:
+        print(f"A posição linha {linha_tiro_jogador} e coluna {coluna_tiro_jogador} já foi informada anteriormente!")
+        while tiro_atual in tiros_jogador:
+            linha_tiro_jogador= int(input("Qual linha deseja atirar? "))
+            while linha_tiro_jogador < 0 or linha_tiro_jogador > 9:
+                print("Linha inválida!")
+                linha_tiro_jogador= int(input("Qual linha deseja atirar? "))
+            
+            coluna_tiro_jogador= int(input("Qual coluna deseja atirar? "))
+            while coluna_tiro_jogador < 0 or coluna_tiro_jogador > 9:
+                print("Coluna inválida!")
+                coluna_tiro_jogador= int(input("Qual linha deseja atirar? "))
+    tiros_jogador.append(tiro_atual)
+    
+    jogada_jogador= faz_jogada(tabuleiro_oponente, linha_tiro_jogador, coluna_tiro_jogador)
+
+    if afundados(frota_oponente, tabuleiro_oponente) == 10:
+        print("Parabéns! Você derrubou todos os navios do seu oponente!")
+        jogando= False
