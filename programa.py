@@ -18,8 +18,8 @@ for nome, dados in tamanhos_navios.items():
     j = 0
     while j < dados[0]:
         print(f'Insira as informações referentes ao navio {nome} que possui tamanho {dados[1]}')	
-        linha_atual = int(input("Qual linha deseja colocar o navio? ")) - 1
-        coluna_atual = int(input("Qual coluna deseja colocar o navio? ")) - 1
+        linha_atual = int(input("Qual linha deseja colocar o navio? ")) 
+        coluna_atual = int(input("Qual coluna deseja colocar o navio? ")) 
 
         if nome != "submarino":
             orientacao = int(input("Qual orientação deseja colocar o navio?"))
