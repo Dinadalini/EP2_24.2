@@ -11,6 +11,8 @@ def define_posicoes(linha, coluna, orientacao, tamanho):
             posicoes = [linha + i, coluna]
             posicoes_lista.append(posicoes)
     return posicoes_lista
+
+
 def preenche_frota(frota, nome_navio, linha, coluna, orientacao, tamanho):
     posicoes = define_posicoes(linha, coluna, orientacao, tamanho)
     if nome_navio in frota:
@@ -19,6 +21,8 @@ def preenche_frota(frota, nome_navio, linha, coluna, orientacao, tamanho):
         frota[nome_navio] = [posicoes]
     
     return frota
+
+
 
 def faz_jogada (tabuleiro, linha, coluna):
 
