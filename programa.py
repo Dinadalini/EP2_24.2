@@ -80,12 +80,12 @@ while jogando:
 
     print(monta_tabuleiros(tabuleiro_jogador, tabuleiro_oponente))
     linha_tiro_jogador= int(input("Qual linha deseja atirar? "))
-    while linha_tiro_jogador < 0 or linha_tiro_jogador > 9:
+    while linha_tiro_jogador < 0 or linha_tiro_jogador > 10:
         print("Linha inválida!")
         linha_tiro_jogador= int(input("Qual linha deseja atirar? "))
     
     coluna_tiro_jogador= int(input("Qual coluna deseja atirar? "))
-    while coluna_tiro_jogador < 0 or coluna_tiro_jogador > 9:
+    while coluna_tiro_jogador < 0 or coluna_tiro_jogador > 10:
         print("Coluna inválida!")
         coluna_tiro_jogador= int(input("Qual linha deseja atirar? "))
 
