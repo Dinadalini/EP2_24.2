@@ -66,6 +66,7 @@ jogando= True
 tiros_jogador=[]
 
 while jogando:
+    print(tabuleiro_jogador, tabuleiro_oponente)
     linha_tiro_jogador= int(input("Qual linha deseja atirar? "))
     while linha_tiro_jogador < 0 or linha_tiro_jogador > 9:
         print("Linha inválida!")
