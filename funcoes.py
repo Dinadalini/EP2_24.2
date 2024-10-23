@@ -1,19 +1,17 @@
-def define_posicoes (linha, coluna, orientacao, tamanho):    
+def define_posicoes(linha, coluna, orientacao, tamanho):    
     posicoes_lista = []
 
     if orientacao == 'horizontal':
         for i in range(tamanho):
-            posicoes = [linha, coluna+i]
+            posicoes = [linha, coluna + i]
             posicoes_lista.append(posicoes)
 
     elif orientacao == 'vertical':
         for i in range(tamanho):
-            posicoes = [linha+i, coluna]
+            posicoes = [linha + i, coluna]
             posicoes_lista.append(posicoes)
     return posicoes_lista
-
-def preenche_frota (frota, nome_navio, linha, coluna, orientacao, tamanho):
-
+def preenche_frota(frota, nome_navio, linha, coluna, orientacao, tamanho):
     posicoes = define_posicoes(linha, coluna, orientacao, tamanho)
     if nome_navio in frota:
         frota[nome_navio].append(posicoes)
@@ -70,14 +68,15 @@ def afundados(frota, tabuleiro):
     return navios_afundados
 
 def posicao_valida(frota, linha, coluna, orientacao, tamanho):
-
     navio_atual = define_posicoes(linha, coluna, orientacao, tamanho)
 
+    # Verifica se as posições estão dentro dos limites do tabuleiro
     for posicao_atual in navio_atual:
         linha_atual, coluna_atual = posicao_atual
         if linha_atual < 0 or linha_atual > 9 or coluna_atual < 0 or coluna_atual > 9:
             return False
         
+    # Verifica se as posições já estão ocupadas
     for navios in frota.values():
         for posicoes in navios:
             for posicao_ocupada in posicoes:
