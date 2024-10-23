@@ -80,29 +80,34 @@ while jogando:
 
     print(monta_tabuleiros(tabuleiro_jogador, tabuleiro_oponente))
     linha_tiro_jogador= int(input("Qual linha deseja atirar? "))
-    while linha_tiro_jogador < 0 or linha_tiro_jogador > 10:
+    # while linha_tiro_jogador < 0 or linha_tiro_jogador > 9:
+    while linha_tiro_jogador not in [0,1,2,3,4,5,6,7,8,9]:
         print("Linha inválida!")
         linha_tiro_jogador= int(input("Qual linha deseja atirar? "))
     
     coluna_tiro_jogador= int(input("Qual coluna deseja atirar? "))
-    while coluna_tiro_jogador < 0 or coluna_tiro_jogador > 10:
+    # while coluna_tiro_jogador < 0 or coluna_tiro_jogador > 9:
+    while coluna_tiro_jogador not in [0,1,2,3,4,5,6,7,8,9]:
         print("Coluna inválida!")
-        coluna_tiro_jogador= int(input("Qual linha deseja atirar? "))
+        coluna_tiro_jogador= int(input("Qual coluna deseja atirar? "))
 
     
     tiro_atual= [linha_tiro_jogador, coluna_tiro_jogador]
-    if tiro_atual in tiros_jogador:
-        print(f"A posição linha {linha_tiro_jogador} e coluna {coluna_tiro_jogador} já foi informada anteriormente!")
-        while tiro_atual in tiros_jogador:
+    while tiro_atual in tiros_jogador:
+        print(f"A posição {linha_tiro_jogador} e {coluna_tiro_jogador} já foi informada anteriormente!")
+        linha_tiro_jogador= int(input("Qual linha deseja atirar? "))
+        # while linha_tiro_jogador < 0 or linha_tiro_jogador > 9:
+        while linha_tiro_jogador not in [0,1,2,3,4,5,6,7,8,9]:
+            print("Linha inválida!")
             linha_tiro_jogador= int(input("Qual linha deseja atirar? "))
-            while linha_tiro_jogador < 0 or linha_tiro_jogador > 10:
-                print("Linha inválida!")
-                linha_tiro_jogador= int(input("Qual linha deseja atirar? "))
-            
+        
+        coluna_tiro_jogador= int(input("Qual coluna deseja atirar? "))
+        # while coluna_tiro_jogador < 0 or coluna_tiro_jogador > 9:
+        while coluna_tiro_jogador not in [0,1,2,3,4,5,6,7,8,9]:
+            print("Coluna inválida!")
             coluna_tiro_jogador= int(input("Qual coluna deseja atirar? "))
-            while coluna_tiro_jogador < 0 or coluna_tiro_jogador > 10:
-                print("Coluna inválida!")
-                coluna_tiro_jogador= int(input("Qual linha deseja atirar? "))
+            
+        tiro_atual= [linha_tiro_jogador, coluna_tiro_jogador]
     tiros_jogador.append(tiro_atual)
     
     jogada_jogador= faz_jogada(tabuleiro_oponente, linha_tiro_jogador, coluna_tiro_jogador)
