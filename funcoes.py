@@ -22,8 +22,6 @@ def preenche_frota(frota, nome_navio, linha, coluna, orientacao, tamanho):
     
     return frota
 
-
-
 def faz_jogada (tabuleiro, linha, coluna):
 
     if tabuleiro[linha][coluna] == 1:
@@ -74,13 +72,11 @@ def afundados(frota, tabuleiro):
 def posicao_valida(frota, linha, coluna, orientacao, tamanho):
     navio_atual = define_posicoes(linha, coluna, orientacao, tamanho)
 
-    # Verifica se as posições estão dentro dos limites do tabuleiro
     for posicao_atual in navio_atual:
         linha_atual, coluna_atual = posicao_atual
         if linha_atual < 0 or linha_atual > 9 or coluna_atual < 0 or coluna_atual > 9:
             return False
         
-    # Verifica se as posições já estão ocupadas
     for navios in frota.values():
         for posicoes in navios:
             for posicao_ocupada in posicoes:

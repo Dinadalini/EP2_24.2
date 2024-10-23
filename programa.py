@@ -1,4 +1,4 @@
-from funcoes import * 
+from funcoes import *
 
 frota = {
     "porta-aviões": [],
@@ -7,14 +7,14 @@ frota = {
     "submarino": [],
 }   
 
-tamanho_navio = { 
+tamanhos_navios = { 
     "porta-aviões": [1, 4], 
     "navio-tanque": [2, 3], 
     "contratorpedeiro": [3, 2], 
-    "submarino": [4, 1]
-} 
+    "submarino": [4, 1] 
+    } 
 
-for nome, dados in tamanho_navio.items():
+for nome, dados in tamanhos_navios.items():
     j = 0
     while j < dados[0]:
         print(f'Insira as informações referentes ao navio {nome} que possui tamanho {dados[1]}')	
@@ -22,14 +22,11 @@ for nome, dados in tamanho_navio.items():
         coluna_atual = int(input("Qual coluna deseja colocar o navio? ")) - 1
 
         if nome != "submarino":
-            orientacao = int(input("Qual orientação deseja colocar o navio? [1] Vertical [2] Horizontal > "))
+            orientacao = int(input("Qual orientação deseja colocar o navio?"))
             if orientacao == 1:
                 orientacao = "vertical"
             elif orientacao == 2:
                 orientacao = "horizontal"
-            else:
-                print("Orientação inválida! Tente novamente.")
-                continue 
         else:
             orientacao = "horizontal" 
 
