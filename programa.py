@@ -1,7 +1,6 @@
 from funcoes import *
 import random
-random.seed(1)
-
+random.seed(2)
 
 #define a frota do jogador
 frota_jogador = {
@@ -110,12 +109,12 @@ while jogando:
 
     #pergunta ao jogador onde ele quer atirar
     linha_tiro_jogador = int(input("Qual linha deseja atirar? "))
-    while linha_tiro_jogador not in list(range(0, 9)):
+    while linha_tiro_jogador not in list(range(0, 10)):
         print("Linha inválida!")
         linha_tiro_jogador = int(input("Qual linha deseja atirar? "))
 
     coluna_tiro_jogador = int(input("Qual coluna deseja atirar? "))
-    while coluna_tiro_jogador not in list(range(0, 9)):
+    while coluna_tiro_jogador not in list(range(0, 10)):
         print("Coluna inválida!")
         coluna_tiro_jogador = int(input("Qual coluna deseja atirar? "))
 
@@ -125,12 +124,12 @@ while jogando:
     while tiro_atual in tiros_jogador:
         print(f"A posição linha {linha_tiro_jogador} e coluna {coluna_tiro_jogador} já foi informada anteriormente!")
         linha_tiro_jogador = int(input("Qual linha deseja atirar? "))
-        while linha_tiro_jogador not in list(range(0, 9)):
+        while linha_tiro_jogador not in list(range(0, 10)):
             print("Linha inválida!")
             linha_tiro_jogador= int(input("Qual linha deseja atirar? "))
         
         coluna_tiro_jogador = int(input("Qual coluna deseja atirar? "))
-        while coluna_tiro_jogador not in list(range(0, 9)):
+        while coluna_tiro_jogador not in list(range(0, 10)):
             print("Coluna inválida!")
             coluna_tiro_jogador= int(input("Qual coluna deseja atirar? "))
 
