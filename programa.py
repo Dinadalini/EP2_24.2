@@ -22,12 +22,6 @@ frota_oponente = {
     "contratorpedeiro": [],
     "submarino": [],
 }
-tamanhos_navios_oponente = { 
-    "porta-aviões": [1, 4], 
-    "navio-tanque": [2, 3], 
-    "contratorpedeiro": [3, 2], 
-    "submarino": [4, 1] 
-    } 
 
 
 #percorre a lista de navios do jogador para colocar no tabuleiro checando se está disponível
@@ -56,9 +50,9 @@ for nome, dados in tamanhos_navios.items():
             print("Esta posição não está válida!")
 
 #percorre a lista de navios do computador para colocar no tabuleiro checando se está disponível
-for nome_oponente, dados_oponente in tamanhos_navios_oponente.items():
-    j_oponente = 0
-    while j_oponente < dados_oponente[0]:	
+for nome_oponente, dados_oponente in tamanhos_navios.items():
+    j = 0
+    while j < dados_oponente[0]:	
         linha_atual_oponente = random.randint(0,9) 
         coluna_atual_oponente = random.randint(0,9) 
         if nome_oponente != "submarino":
@@ -74,7 +68,7 @@ for nome_oponente, dados_oponente in tamanhos_navios_oponente.items():
 
         if posicao_valida(frota_oponente, linha_atual_oponente, coluna_atual_oponente, orientacao_oponente, tamanho_oponente):
             preenche_frota(frota_oponente, nome_oponente, linha_atual_oponente, coluna_atual_oponente, orientacao_oponente, tamanho_oponente)
-            j_oponente += 1  
+            j += 1  
 
 
 #cria o tabuleiro dos dois jogadores
@@ -152,7 +146,7 @@ while jogando:
         linha_tiro_oponente = random.randint(0,9)
         coluna_tiro_oponente = random.randint(0,9)
         tiro_atual_oponente = [linha_tiro_oponente, coluna_tiro_oponente]
-        
+
     tiros_oponente.append(tiro_atual_oponente)
 
     #dado que o tiro do computador é valido, imprime no terminal onde ele está atirando
