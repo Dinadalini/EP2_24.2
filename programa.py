@@ -1,5 +1,6 @@
 from funcoes import *
 import random
+random.seed(2)
 
 #define a frota do jogador
 frota_jogador = {
@@ -135,6 +136,11 @@ while jogando:
         tiro_atual= [linha_tiro_jogador, coluna_tiro_jogador]
 
     tiros_jogador.append(tiro_atual)
+    #se o jogador não tiver afundado todos os navios do computador, então roda o resto do codigo
+    if afundados(frota_oponente, tabuleiro_oponente) == 10:
+        print("Parabéns! Você derrubou todos os navios do seu oponente!")
+        jogando= False
+        break
 
     #ve onde o computador vai atirar
     linha_tiro_oponente = random.randint(0,9)
@@ -156,9 +162,6 @@ while jogando:
     jogada_oponente= faz_jogada(tabuleiro_jogador, linha_tiro_oponente, coluna_tiro_oponente)
 
     #checa se todos os barcos foram afundados de dos jogadores e se sim encerra o jogo
-    if afundados(frota_oponente, tabuleiro_oponente) == 10:
-        print("Parabéns! Você derrubou todos os navios do seu oponente!")
-        jogando= False
     if afundados(frota_jogador, tabuleiro_jogador) == 10:
         print('Xi! O oponente derrubou toda a sua frota =(')
         jogando= False
