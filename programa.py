@@ -1,5 +1,6 @@
 from funcoes import *
 import random
+random.seed(1)
 
 #define a frota do jogador
 frota_jogador = {
@@ -11,10 +12,24 @@ frota_jogador = {
 
 #define a frota do computador
 frota_oponente = {
-    "porta-aviões": [],
-    "navio-tanque": [],
-    "contratorpedeiro": [],
-    "submarino": [],
+    'porta-aviões': [
+        [[9, 1], [9, 2], [9, 3], [9, 4]]
+    ],
+    'navio-tanque': [
+        [[6, 0], [6, 1], [6, 2]],
+        [[4, 3], [5, 3], [6, 3]]
+    ],
+    'contratorpedeiro': [
+        [[1, 6], [1, 7]],
+        [[0, 5], [1, 5]],
+        [[3, 6], [3, 7]]
+    ],
+    'submarino': [
+        [[2, 7]],
+        [[0, 6]],
+        [[9, 7]],
+        [[7, 6]]
+    ]
 }
 
 #dicionário com os tamanhos dos navios
@@ -50,27 +65,6 @@ for nome, dados in tamanhos_navios.items():
             j += 1  
         else:
             print("Esta posição não está válida!")
-
-#percorre a lista de navios do computador para colocar no tabuleiro checando se está disponível
-for nome_oponente, dados_oponente in tamanhos_navios.items():
-    j = 0
-    while j < dados_oponente[0]:	
-        linha_atual_oponente = random.randint(0,9) 
-        coluna_atual_oponente = random.randint(0,9) 
-        if nome_oponente != "submarino":
-            orientacao_oponente = random.randint(1,2) 
-            if orientacao_oponente == 1:
-                orientacao_oponente = "vertical"
-            elif orientacao_oponente == 2:
-                orientacao_oponente = "horizontal"
-        else:
-            orientacao_oponente = "horizontal" 
-
-        tamanho_oponente = dados_oponente[1]
-
-        if posicao_valida(frota_oponente, linha_atual_oponente, coluna_atual_oponente, orientacao_oponente, tamanho_oponente):
-            preenche_frota(frota_oponente, nome_oponente, linha_atual_oponente, coluna_atual_oponente, orientacao_oponente, tamanho_oponente)
-            j += 1  
 
 
 #cria o tabuleiro dos dois jogadores
