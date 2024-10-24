@@ -1,6 +1,6 @@
 from funcoes import *
 import random
-random.seed(1)
+
 
 #define a frota do jogador
 frota_jogador = {
