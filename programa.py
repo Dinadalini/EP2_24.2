@@ -1,13 +1,13 @@
 from funcoes import *
 import random
 
+#define a frota do jogador
 frota = {
     "porta-aviões": [],
     "navio-tanque": [],
     "contratorpedeiro": [],
     "submarino": [],
 }   
-
 tamanhos_navios = { 
     "porta-aviões": [1, 4], 
     "navio-tanque": [2, 3], 
@@ -15,6 +15,22 @@ tamanhos_navios = {
     "submarino": [4, 1] 
     } 
 
+#define a frota do computador
+frota_oponente = {
+    "porta-aviões": [],
+    "navio-tanque": [],
+    "contratorpedeiro": [],
+    "submarino": [],
+}
+tamanhos_navios_oponente = { 
+    "porta-aviões": [1, 4], 
+    "navio-tanque": [2, 3], 
+    "contratorpedeiro": [3, 2], 
+    "submarino": [4, 1] 
+    } 
+
+
+#percorre a lista de navios do jogador para colocar no tabuleiro checando se está disponível
 for nome, dados in tamanhos_navios.items():
     j = 0
     while j < dados[0]:
@@ -39,19 +55,7 @@ for nome, dados in tamanhos_navios.items():
         else:
             print("Esta posição não está válida!")
 
-frota_oponente = {
-    "porta-aviões": [],
-    "navio-tanque": [],
-    "contratorpedeiro": [],
-    "submarino": [],
-}
-tamanhos_navios_oponente = { 
-    "porta-aviões": [1, 4], 
-    "navio-tanque": [2, 3], 
-    "contratorpedeiro": [3, 2], 
-    "submarino": [4, 1] 
-    } 
-
+#percorre a lista de navios do computador para colocar no tabuleiro checando se está disponível
 for nome_oponente, dados_oponente in tamanhos_navios_oponente.items():
     j_oponente = 0
     while j_oponente < dados_oponente[0]:	
@@ -72,14 +76,24 @@ for nome_oponente, dados_oponente in tamanhos_navios_oponente.items():
             preenche_frota(frota_oponente, nome_oponente, linha_atual_oponente, coluna_atual_oponente, orientacao_oponente, tamanho_oponente)
             j_oponente += 1  
 
+
+#cria o tabuleiro dos dois jogadores
 tabuleiro_oponente= posiciona_frota(frota_oponente)
 tabuleiro_jogador= posiciona_frota (frota)
 
+
+#cria o looping do jogo 
 jogando= True
+
+#cria as listas de onde foram os tiros
 tiros_jogador=[]
 tiros_oponente=[]
 
+
+#looping do jogo 
 while jogando:
+
+    #faz o tabuleiro usando a função do prof
     def monta_tabuleiros(tabuleiro_jogador, tabuleiro_oponente):
         texto = ''
         texto += '   0  1  2  3  4  5  6  7  8  9         0  1  2  3  4  5  6  7  8  9\n'
@@ -90,23 +104,19 @@ while jogando:
             oponente_info = '  '.join([info if str(info) in 'X-' else '0' for info in tabuleiro_oponente[linha]])
             texto += f'{linha}| {jogador_info}|     {linha}| {oponente_info}|\n'
         return texto
-
     print(monta_tabuleiros(tabuleiro_jogador, tabuleiro_oponente))
+
+    #pergunta ao jogador onde ele quer atirar
     linha_tiro_jogador = int(input("Qual linha deseja atirar? "))
-    linha_tiro_oponente = random.randint(0,9)
     while linha_tiro_jogador not in list(range(0, 9)):
         print("Linha inválida!")
         linha_tiro_jogador= int(input("Qual linha deseja atirar? "))
-
     coluna_tiro_jogador= int(input("Qual coluna deseja atirar? "))
-    coluna_tiro_oponente= random.randint(0,9)
     while coluna_tiro_jogador not in list(range(0, 9)):
         print("Coluna inválida!")
         coluna_tiro_jogador= int(input("Qual coluna deseja atirar? "))
-
-    
     tiro_atual = [linha_tiro_jogador, coluna_tiro_jogador]
-    tiro_atual_oponente= [linha_tiro_oponente, coluna_tiro_oponente]
+    #checa se o tiro e valido e se não for entra em um looping até que fique valido
     while tiro_atual in tiros_jogador:
         print(f"A posição linha {linha_tiro_jogador} e coluna {coluna_tiro_jogador} já foi informada anteriormente!")
         linha_tiro_jogador= int(input("Qual linha deseja atirar? "))
@@ -122,17 +132,24 @@ while jogando:
         tiro_atual= [linha_tiro_jogador, coluna_tiro_jogador]
     tiros_jogador.append(tiro_atual)
 
+    #ve onde o computador vai atirar
+    linha_tiro_oponente = random.randint(0,9)
+    coluna_tiro_oponente= random.randint(0,9)
+    tiro_atual_oponente= [linha_tiro_oponente, coluna_tiro_oponente]
+    #checa se o tiro e valido e se não for entra em um looping até que fique valido
     while tiro_atual_oponente in tiros_oponente:
         linha_tiro_oponente= random.randint(0,9)
         coluna_tiro_oponente= random.randint(0,9)
         tiro_atual_oponente= [linha_tiro_oponente, coluna_tiro_oponente]
     tiros_oponente.append(tiro_atual_oponente)
-
+    #dado que o tiro do computador é valido, imprime no terminal onde ele está atirando
     print(f'Seu oponente está atacando na linha {linha_atual_oponente} e coluna {coluna_atual_oponente}')
     
+    #faz a jogada colocando nos tabuleiros se acertou na água ou em um barco com "-" e "x"
     jogada_jogador= faz_jogada(tabuleiro_oponente, linha_tiro_jogador, coluna_tiro_jogador)
     jogada_oponente= faz_jogada(tabuleiro_jogador, linha_tiro_oponente, coluna_tiro_oponente)
 
+    #checa se todos os barcos foram afundados de dos jogadores e se sim encerra o jogo
     if afundados(frota_oponente, tabuleiro_oponente) == 10:
         print("Parabéns! Você derrubou todos os navios do seu oponente!")
         jogando= False
