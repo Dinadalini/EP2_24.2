@@ -1,8 +1,10 @@
 from funcoes import *
 import random
+random.seed(1)
+
 
 #define a frota do jogador
-frota = {
+frota_jogador = {
     "porta-aviões": [],
     "navio-tanque": [],
     "contratorpedeiro": [],
@@ -49,8 +51,8 @@ for nome, dados in tamanhos_navios.items():
 
         tamanho = dados[1]
 
-        if posicao_valida(frota, linha_atual, coluna_atual, orientacao, tamanho):
-            preenche_frota(frota, nome, linha_atual, coluna_atual, orientacao, tamanho)
+        if posicao_valida(frota_jogador, linha_atual, coluna_atual, orientacao, tamanho):
+            preenche_frota(frota_jogador, nome, linha_atual, coluna_atual, orientacao, tamanho)
             j += 1  
         else:
             print("Esta posição não está válida!")
@@ -79,7 +81,7 @@ for nome_oponente, dados_oponente in tamanhos_navios_oponente.items():
 
 #cria o tabuleiro dos dois jogadores
 tabuleiro_oponente= posiciona_frota(frota_oponente)
-tabuleiro_jogador= posiciona_frota (frota)
+tabuleiro_jogador= posiciona_frota (frota_jogador)
 
 
 #cria o looping do jogo 
@@ -110,40 +112,46 @@ while jogando:
     linha_tiro_jogador = int(input("Qual linha deseja atirar? "))
     while linha_tiro_jogador not in list(range(0, 9)):
         print("Linha inválida!")
-        linha_tiro_jogador= int(input("Qual linha deseja atirar? "))
-    coluna_tiro_jogador= int(input("Qual coluna deseja atirar? "))
+        linha_tiro_jogador = int(input("Qual linha deseja atirar? "))
+
+    coluna_tiro_jogador = int(input("Qual coluna deseja atirar? "))
     while coluna_tiro_jogador not in list(range(0, 9)):
         print("Coluna inválida!")
-        coluna_tiro_jogador= int(input("Qual coluna deseja atirar? "))
+        coluna_tiro_jogador = int(input("Qual coluna deseja atirar? "))
+
     tiro_atual = [linha_tiro_jogador, coluna_tiro_jogador]
+
     #checa se o tiro e valido e se não for entra em um looping até que fique valido
     while tiro_atual in tiros_jogador:
         print(f"A posição linha {linha_tiro_jogador} e coluna {coluna_tiro_jogador} já foi informada anteriormente!")
-        linha_tiro_jogador= int(input("Qual linha deseja atirar? "))
+        linha_tiro_jogador = int(input("Qual linha deseja atirar? "))
         while linha_tiro_jogador not in list(range(0, 9)):
             print("Linha inválida!")
             linha_tiro_jogador= int(input("Qual linha deseja atirar? "))
         
-        coluna_tiro_jogador= int(input("Qual coluna deseja atirar? "))
+        coluna_tiro_jogador = int(input("Qual coluna deseja atirar? "))
         while coluna_tiro_jogador not in list(range(0, 9)):
             print("Coluna inválida!")
             coluna_tiro_jogador= int(input("Qual coluna deseja atirar? "))
 
         tiro_atual= [linha_tiro_jogador, coluna_tiro_jogador]
+
     tiros_jogador.append(tiro_atual)
 
     #ve onde o computador vai atirar
     linha_tiro_oponente = random.randint(0,9)
-    coluna_tiro_oponente= random.randint(0,9)
-    tiro_atual_oponente= [linha_tiro_oponente, coluna_tiro_oponente]
+    coluna_tiro_oponente = random.randint(0,9)
+    tiro_atual_oponente = [linha_tiro_oponente, coluna_tiro_oponente]
+
     #checa se o tiro e valido e se não for entra em um looping até que fique valido
     while tiro_atual_oponente in tiros_oponente:
-        linha_tiro_oponente= random.randint(0,9)
-        coluna_tiro_oponente= random.randint(0,9)
-        tiro_atual_oponente= [linha_tiro_oponente, coluna_tiro_oponente]
+        linha_tiro_oponente = random.randint(0,9)
+        coluna_tiro_oponente = random.randint(0,9)
+        tiro_atual_oponente = [linha_tiro_oponente, coluna_tiro_oponente]
     tiros_oponente.append(tiro_atual_oponente)
+
     #dado que o tiro do computador é valido, imprime no terminal onde ele está atirando
-    print(f'Seu oponente está atacando na linha {linha_atual_oponente} e coluna {coluna_atual_oponente}')
+    print(f'Seu oponente está atacando na linha {linha_tiro_oponente} e coluna {coluna_tiro_oponente}')
     
     #faz a jogada colocando nos tabuleiros se acertou na água ou em um barco com "-" e "x"
     jogada_jogador= faz_jogada(tabuleiro_oponente, linha_tiro_jogador, coluna_tiro_jogador)
@@ -153,6 +161,6 @@ while jogando:
     if afundados(frota_oponente, tabuleiro_oponente) == 10:
         print("Parabéns! Você derrubou todos os navios do seu oponente!")
         jogando= False
-    if afundados(frota, tabuleiro_jogador) == 10:
+    if afundados(frota_jogador, tabuleiro_jogador) == 10:
         print('Xi! O oponente derrubou toda a sua frota =(')
         jogando= False
