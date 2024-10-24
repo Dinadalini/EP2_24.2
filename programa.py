@@ -1,5 +1,6 @@
 from funcoes import *
 import random
+random.seed(1)
 
 #define a frota do jogador
 frota_jogador = {
@@ -8,12 +9,6 @@ frota_jogador = {
     "contratorpedeiro": [],
     "submarino": [],
 }   
-tamanhos_navios = { 
-    "porta-aviões": [1, 4], 
-    "navio-tanque": [2, 3], 
-    "contratorpedeiro": [3, 2], 
-    "submarino": [4, 1] 
-    } 
 
 #define a frota do computador
 frota_oponente = {
@@ -22,6 +17,14 @@ frota_oponente = {
     "contratorpedeiro": [],
     "submarino": [],
 }
+
+#dicionário com os tamanhos dos navios
+tamanhos_navios = { #[qtd, tamanho]
+    "porta-aviões": [1, 4], 
+    "navio-tanque": [2, 3], 
+    "contratorpedeiro": [3, 2], 
+    "submarino": [4, 1] 
+    } 
 
 
 #percorre a lista de navios do jogador para colocar no tabuleiro checando se está disponível
